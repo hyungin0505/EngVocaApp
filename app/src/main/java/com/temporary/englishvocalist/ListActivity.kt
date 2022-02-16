@@ -28,6 +28,7 @@ class ListActivity : Activity() {
                 Toast.makeText(v.context, "Activity\n${voca.eng}\n${voca.kor}", Toast.LENGTH_SHORT).show()
                 voca.eng = voca.eng + "1"
                 adapter.notifyDataSetChanged()
+                /// ㅎㅇ
             }
         })
         mRecyclerView.adapter = adapter
