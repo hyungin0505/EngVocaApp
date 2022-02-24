@@ -5,32 +5,35 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class VocaListAdapter(private val vocaList : List<Voca>) : RecyclerView.Adapter<VocaViewHolder>() {
+class VocaListAdapter(private val itemList : List<Voca>) : RecyclerView.Adapter<VocaViewHolder>()  {
+
     override fun getItemCount(): Int {
-        return vocaList.size
+        return itemList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VocaViewHolder {
-        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.item_voca, parent,false)
-        return VocaViewHolder(inflatedView);
+        val inflatedView = LayoutInflater.from(parent.context).inflate(R.layout.item_vocas, parent, false)
+        return VocaViewHolder(inflatedView)
     }
 
     override fun onBindViewHolder(holder: VocaViewHolder, position: Int) {
-        val voca = vocaList[position]
+        val item = itemList[position]
+
         holder.itemView.setOnClickListener {
-            vocaClickListener.onClick(it, position)
+            itemClickListener.onClick(it, position)
         }
         holder.apply {
-            bind(voca)
+            bind(item)
         }
     }
 
-    interface OnVocaClickListener {
-        fun onClick(v:View, position: Int)
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
     }
-    private lateinit var vocaClickListener : OnVocaClickListener
+    private lateinit var itemClickListener : OnItemClickListener
 
-    fun setVocaClickListener(vocaClickListener: OnVocaClickListener) {
-        this.vocaClickListener = vocaClickListener
+    fun setItemClickListener(itemClickListener: OnItemClickListener) {
+        this.itemClickListener = itemClickListener
     }
+
 }
